@@ -56,16 +56,24 @@ export default function Home() {
           <div className="absolute inset-0 bg-[#0a1628]/83" />
           <div className="absolute inset-0" style={{ background: "linear-gradient(110deg,rgba(27,79,216,0.2) 0%,transparent 55%)" }} />
         </div>
-        <div className="relative z-10 max-w-[1400px] mx-auto w-full px-6 pt-44 pb-24">
+        <div className="relative z-10 max-w-[1400px] mx-auto w-full px-6 pt-44 pb-16">
 
-          {/* Mobile: globe as background overlay behind text */}
-          <div className="lg:hidden absolute inset-0 flex items-center justify-center pointer-events-none select-none" style={{ opacity: 0.55 }}>
-            <div style={{ width: "100vw", height: "100vw", maxWidth: "500px", maxHeight: "500px" }}>
-              <GlobeWrapper />
-            </div>
+          {/* Mobile: globe large, center-bottom, behind text */}
+          <div className="lg:hidden absolute pointer-events-none select-none"
+            style={{
+              left: "50%",
+              transform: "translateX(-50%)",
+              bottom: "-10%",
+              width: "120vw",
+              height: "120vw",
+              maxWidth: "600px",
+              maxHeight: "600px",
+              opacity: 0.5,
+            }}>
+            <GlobeWrapper />
           </div>
 
-          {/* Desktop: side-by-side grid | Mobile: text only (globe is bg) */}
+          {/* Grid: PC = side-by-side, Mobile = text only (globe is bg above) */}
           <div className="relative z-10 grid lg:grid-cols-2 gap-16 items-center">
 
             {/* Left — text */}
@@ -74,7 +82,7 @@ export default function Home() {
                 <div className="w-8 h-[3px] bg-[#F5A623]" />
                 <span className="text-white/60 text-[11px] font-bold tracking-[0.2em] uppercase">Bangladesh&apos;s Trusted Trade Consultancy</span>
               </div>
-              <h1 className="text-white mb-7" style={{ fontFamily:"var(--font-main)", fontSize:"clamp(2.8rem,5vw,4.4rem)", fontWeight:800, lineHeight:1.08, letterSpacing:"-0.025em" }}>
+              <h1 className="text-white mb-7" style={{ fontFamily:"var(--font-main)", fontSize:"clamp(2.4rem,5vw,4.4rem)", fontWeight:800, lineHeight:1.08, letterSpacing:"-0.025em" }}>
                 Expert Solutions<br/>
                 for <span style={{ color:"#F5A623" }}>Global Trade</span><br/>
                 &amp; Compliance
@@ -96,7 +104,7 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Right — globe, desktop only */}
+            {/* Right — globe, PC only */}
             <div className="hidden lg:flex items-center justify-center">
               <GlobeWrapper />
             </div>

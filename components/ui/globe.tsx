@@ -168,7 +168,7 @@ export function Globe({ globeConfig, data }: WorldProps) {
         .filter((d, i) => newNumbersOfRings.includes(i))
         .map((d) => ({ lat: d.startLat, lng: d.startLng, color: d.color }));
       globeRef.current.ringsData(ringsData);
-    }, 2000);
+    }, 3500);
 
     return () => clearInterval(interval);
   }, [isInitialized, data]);
@@ -179,7 +179,9 @@ export function Globe({ globeConfig, data }: WorldProps) {
 export function WebGLRendererConfig() {
   const { gl, size } = useThree();
   useEffect(() => {
-    gl.setPixelRatio(window.devicePixelRatio);
+    // Cap pixel ratio at 1.5 to prevent GPU overload on mobile/Retina screens
+    const pixelRatio = Math.min(window.devicePixelRatio, 1.5);
+    gl.setPixelRatio(pixelRatio);
     gl.setSize(size.width, size.height);
     gl.setClearColor(0xffaaff, 0);
   }, []);
