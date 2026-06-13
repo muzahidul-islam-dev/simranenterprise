@@ -152,7 +152,7 @@ export default function Home() {
               <div className="border-t border-[#e5e7eb] mb-8" />
               <div className="flex flex-wrap items-center gap-6">
                 <Link href="/about"
-                  className="group inline-flex items-center gap-2 text-white bg-[#1B4FD8] hover:bg-[#1340B8] transition-colors px-8 py-[14px] text-[12px] font-bold tracking-[0.1em] uppercase shadow-lg"
+                  className="group inline-flex items-center gap-2 text-white! bg-[#1B4FD8] hover:bg-[#1340B8] transition-colors px-8 py-[14px] text-[12px] font-bold tracking-[0.1em] uppercase shadow-lg"
                   style={{ borderRadius:"8px" }}>
                   Discover More <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform"/>
                 </Link>
