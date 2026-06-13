@@ -63,12 +63,10 @@ export default function Home() {
             style={{
               left: "50%",
               transform: "translateX(-50%)",
-              bottom: "-10%",
-              width: "120vw",
-              height: "120vw",
-              maxWidth: "600px",
-              maxHeight: "600px",
-              opacity: 0.5,
+              bottom: "5%",
+              width: "160vw",
+              height: "160vw",
+              opacity: 0.55,
             }}>
             <GlobeWrapper />
           </div>

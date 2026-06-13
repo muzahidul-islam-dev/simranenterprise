@@ -27,28 +27,28 @@ const desktopConfig = {
   autoRotateSpeed: 0.8,
 };
 
-// ── Mobile config — reduced quality, same visual feel ─────────
+// ── Mobile config — no rings, optimized performance ──────────
 const mobileConfig = {
-  pointSize: 5,
+  pointSize: 4,
   globeColor: "#0F2D6B",
   showAtmosphere: true,
   atmosphereColor: "#93C5FD",
   atmosphereAltitude: 0.1,
   emissive: "#0F172A",
-  emissiveIntensity: 0.1,
-  shininess: 0.6,
-  polygonColor: "rgba(147,197,253,0.5)",
+  emissiveIntensity: 0.08,
+  shininess: 0.5,
+  polygonColor: "rgba(147,197,253,0.45)",
   ambientLight: "#BFDBFE",
   directionalLeftLight: "#ffffff",
   directionalTopLight: "#ffffff",
   pointLight: "#93C5FD",
-  arcTime: 1500,
+  arcTime: 2000,
   arcLength: 0.85,
-  rings: 1,
-  maxRings: 1,
+  rings: 0,
+  maxRings: 0,
   initialPosition: { lat: 22.3193, lng: 114.1694 },
   autoRotate: true,
-  autoRotateSpeed: 0.5,
+  autoRotateSpeed: 0.4,
 };
 
 const colors = ["#F59E0B", "#1B4FD8", "#3B6FE8"];
