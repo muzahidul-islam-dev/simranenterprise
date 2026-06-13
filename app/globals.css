@@ -1,26 +1,105 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
+/* ── Force light mode always ─────────────────────────────────── */
 @media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  :root { color-scheme: light; }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+:root {
+  color-scheme: light;
+
+  --font-main:  var(--font-jakarta), "Plus Jakarta Sans", "Cal Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+  /* Brand */
+  --c-dark:     #0d1b2a;
+  --c-primary:  #1B4FD8;
+  --c-accent:   #F5A623;
+
+  /* Light surface text */
+  --c-heading:  #0d1b2a;
+  --c-body:     #4b5563;
+  --c-muted:    #9ca3af;
+
+  /* Surfaces */
+  --c-border:   #e5e7eb;
+  --c-bg-light: #f8f9fa;
 }
+
+/* ── Reset ──────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+/* ── Base body — light surface defaults ─────────────────────── */
+body {
+  font-family:             var(--font-main);
+  font-size:               16px;
+  line-height:             1.75;
+  color:                   #4b5563;
+  background:              #fff;
+  -webkit-font-smoothing:  antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ── Headings — font/weight/spacing only, NO color ──────────── *
+ * Color is set per-context in JSX (text-[#0d1b2a] on light,    *
+ * text-white on dark/blue backgrounds).                         *
+ * ─────────────────────────────────────────────────────────────*/
+h1, h2, h3, h4, h5, h6 {
+  font-family:    var(--font-main);
+  font-weight:    800;
+  line-height:    1.1;
+  letter-spacing: -0.02em;
+}
+
+/* ── NO global p color rule — set per-context in JSX ────────── */
+a { color: inherit; text-decoration: none; }
+
+.sec-label {
+  display:        inline-flex;
+  align-items:    center;
+  gap:            10px;
+  font-family:    var(--font-main);
+  font-size:      12px;
+  font-weight:    700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color:          var(--c-primary);
+  margin-bottom:  16px;
+}
+.sec-label::before {
+  content:     "";
+  display:     block;
+  width:       30px;
+  height:      3px;
+  background:  var(--c-accent);
+  flex-shrink: 0;
+}
+
+/* White variant — for dark sections */
+.sec-label-white {
+  display:        inline-flex;
+  align-items:    center;
+  gap:            10px;
+  font-family:    var(--font-main);
+  font-size:      12px;
+  font-weight:    700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color:          rgba(255, 255, 255, 0.7);
+  margin-bottom:  16px;
+}
+.sec-label-white::before {
+  content:     "";
+  display:     block;
+  width:       30px;
+  height:      3px;
+  background:  var(--c-accent);
+  flex-shrink: 0;
+}
+
+/* ── Animations ─────────────────────────────────────────────── */
+@keyframes fade-in-up {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.anim-up { animation: fade-in-up 0.6s ease both; }
