@@ -301,7 +301,7 @@ export default function Home() {
               ))}
             </div>
             <Link href="/about"
-              className="shrink-0 inline-flex items-center gap-2 text-white bg-[#1B4FD8] hover:bg-[#1340B8] transition-colors px-7 py-[14px] text-[12px] font-bold tracking-[0.1em] uppercase group"
+              className="shrink-0 inline-flex items-center gap-2 text-white! bg-[#1B4FD8] hover:bg-[#1340B8] transition-colors px-7 py-[14px] text-[12px] font-bold tracking-[0.1em] uppercase group"
               style={{ borderRadius:"8px" }}>
               Our Full Story <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform"/>
             </Link>

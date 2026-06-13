@@ -80,7 +80,7 @@ export default function Header() {
             </Link>
             <Link
               href="/contact"
-              className="group inline-flex items-center gap-2 text-white bg-[#F5A623] hover:bg-[#d4901e] transition-colors px-7 py-3"
+              className="group inline-flex items-center gap-2 text-white! bg-[#F5A623] hover:bg-[#d4901e] transition-colors px-7 py-3"
               style={{
                 fontSize: "12px",
                 fontWeight: 700,
@@ -128,7 +128,7 @@ export default function Header() {
               <Link
                 href="/contact"
                 onClick={() => setMenuOpen(false)}
-                className="w-full flex items-center justify-center gap-2 py-3 bg-[#F5A623] text-white hover:bg-[#d4901e] transition-colors"
+                className="w-full flex items-center justify-center gap-2 py-3 bg-[#F5A623] text-white! hover:bg-[#d4901e] transition-colors"
                 style={{ fontSize: "13px", fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", borderRadius: "8px" }}
               >
                 Get A Quote
