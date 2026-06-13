@@ -51,7 +51,7 @@ export default function FAQ() {
         >
           <button
             onClick={() => setOpen(open === i ? null : i)}
-            className="w-full flex items-center justify-between px-6 py-5 text-left bg-white"
+            className="w-full flex items-center justify-between px-6 py-5 text-left cursor-pointer bg-white"
           >
             <span
               className="pr-4"

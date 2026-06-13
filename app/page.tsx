@@ -541,7 +541,7 @@ export default function Home() {
               <Link
                 href="/contact"
                 className="group inline-flex items-center gap-2 text-white bg-[#1B4FD8] hover:bg-[#1340B8] transition-colors px-7 py-[13px] text-[12px] font-bold tracking-widest uppercase"
-                style={{ borderRadius: 0 }}
+                style={{ borderRadius: "8px" }}
               >
                 Get Free Consultation
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
@@ -570,7 +570,7 @@ export default function Home() {
               <a
                 href="tel:+8801716672886"
                 className="inline-flex items-center gap-2 text-white border-2 border-white/30 hover:bg-white/10 transition-colors px-7 py-3 text-[12px] font-bold tracking-widest uppercase"
-                style={{ borderRadius: 0 }}
+                style={{ borderRadius: "8px" }}
               >
                 <Phone className="w-4 h-4" />
                 +880 1716 672886
@@ -578,7 +578,7 @@ export default function Home() {
               <Link
                 href="/contact"
                 className="inline-flex items-center gap-2 text-[#1B4FD8] bg-white hover:bg-[#f8f9fa] transition-colors px-7 py-3 text-[12px] font-bold tracking-widest uppercase"
-                style={{ borderRadius: 0 }}
+                style={{ borderRadius: "8px" }}
               >
                 Get A Quote
                 <ArrowRight className="w-4 h-4" />
@@ -667,11 +667,11 @@ export default function Home() {
                     type="email"
                     placeholder="Your email address"
                     className="flex-1 px-4 py-3 bg-white/5 border border-white/10 text-white placeholder-white/25 focus:outline-none focus:border-[#1B4FD8] text-[13px] min-w-0"
-                    style={{ borderRadius: 0 }}
+                    style={{ borderRadius: "8px" }}
                   />
                   <button
                     className="px-4 py-3 bg-[#F5A623] hover:bg-[#d4901e] transition-colors shrink-0"
-                    style={{ borderRadius: 0 }}
+                    style={{ borderRadius: "8px" }}
                     aria-label="Subscribe"
                   >
                     <ArrowRight className="w-4 h-4 text-white" />
@@ -690,7 +690,7 @@ export default function Home() {
                       href="#"
                       aria-label={s.label}
                       className="w-9 h-9 flex items-center justify-center bg-white/5 border border-white/10 hover:bg-[#F5A623] hover:border-[#F5A623] transition-all"
-                      style={{ borderRadius: 0 }}
+                      style={{ borderRadius: "8px" }}
                     >
                       <svg className="w-4 h-4 text-white/60 hover:text-white" fill="currentColor" viewBox="0 0 24 24">
                         <path d={s.d} />
