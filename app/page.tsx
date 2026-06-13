@@ -57,7 +57,18 @@ export default function Home() {
           <div className="absolute inset-0" style={{ background: "linear-gradient(110deg,rgba(27,79,216,0.2) 0%,transparent 55%)" }} />
         </div>
         <div className="relative z-10 max-w-[1400px] mx-auto w-full px-6 pt-44 pb-24">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
+
+          {/* Mobile: globe as background overlay behind text */}
+          <div className="lg:hidden absolute inset-0 flex items-center justify-center pointer-events-none select-none" style={{ opacity: 0.55 }}>
+            <div style={{ width: "100vw", height: "100vw", maxWidth: "500px", maxHeight: "500px" }}>
+              <GlobeWrapper />
+            </div>
+          </div>
+
+          {/* Desktop: side-by-side grid | Mobile: text only (globe is bg) */}
+          <div className="relative z-10 grid lg:grid-cols-2 gap-16 items-center">
+
+            {/* Left — text */}
             <div>
               <div className="flex items-center gap-3 mb-7">
                 <div className="w-8 h-[3px] bg-[#F5A623]" />
@@ -84,9 +95,12 @@ export default function Home() {
                 </Link>
               </div>
             </div>
+
+            {/* Right — globe, desktop only */}
             <div className="hidden lg:flex items-center justify-center">
               <GlobeWrapper />
             </div>
+
           </div>
         </div>
       </section>
