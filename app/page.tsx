@@ -569,7 +569,7 @@ export default function Home() {
             <div className="flex flex-wrap gap-4 shrink-0">
               <a
                 href="tel:+8801716672886"
-                className="inline-flex items-center gap-2 text-white border-2 border-white/30 hover:bg-white/10 transition-colors px-7 py-3 text-[12px] font-bold tracking-widest uppercase"
+                className="inline-flex items-center gap-2 text-white! border-2 border-white/30 hover:bg-white/10 transition-colors px-7 py-3 text-[12px] font-bold tracking-widest uppercase"
                 style={{ borderRadius: "8px" }}
               >
                 <Phone className="w-4 h-4" />
@@ -577,7 +577,7 @@ export default function Home() {
               </a>
               <Link
                 href="/contact"
-                className="inline-flex items-center gap-2 text-[#1B4FD8] bg-white hover:bg-[#f8f9fa] transition-colors px-7 py-3 text-[12px] font-bold tracking-widest uppercase"
+                className="inline-flex items-center gap-2 text-[#1B4FD8]! bg-white hover:bg-[#f8f9fa] transition-colors px-7 py-3 text-[12px] font-bold tracking-widest uppercase"
                 style={{ borderRadius: "8px" }}
               >
                 Get A Quote
