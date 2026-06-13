@@ -76,12 +76,12 @@ export default function Home() {
               </p>
               <div className="flex flex-wrap gap-4">
                 <Link href="/contact"
-                  className="group inline-flex items-center gap-2 text-white bg-[#F5A623] hover:bg-[#d4901e] transition-colors px-8 py-[15px] text-[12px] font-bold tracking-[0.12em] uppercase"
+                  className="group inline-flex items-center gap-2 text-white! bg-[#F5A623] hover:bg-[#d4901e] transition-colors px-8 py-[15px] text-[12px] font-bold tracking-[0.12em] uppercase"
                   style={{ borderRadius:"12px" }}>
                   Get A Free Quote <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform"/>
                 </Link>
                 <Link href="/services"
-                  className="inline-flex items-center gap-2 text-white hover:text-[#F5A623] hover:border-[#F5A623] transition-colors px-8 py-[15px] text-[12px] font-bold tracking-[0.12em] uppercase"
+                  className="inline-flex items-center gap-2 text-white! hover:text-[#F5A623] hover:border-[#F5A623] transition-colors px-8 py-[15px] text-[12px] font-bold tracking-[0.12em] uppercase"
                   style={{ border:"2px solid rgba(255,255,255,0.3)", borderRadius:"12px" }}>
                   Explore Services
                 </Link>
