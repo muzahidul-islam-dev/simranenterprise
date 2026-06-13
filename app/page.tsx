@@ -15,7 +15,7 @@ export default function Home() {
     <div className="min-h-screen bg-white" style={F}>
 
       {/* TOP BAR — fixed at very top, always visible */}
-      <div className="fixed top-0 left-0 right-0 z-50 bg-[#0d1b2a] text-white py-3 px-6" style={F}>
+      <div className="fixed top-0 left-0 right-0 z-50 bg-[#0d1b2a] text-white! py-3 px-6" style={F}>
         <div className="max-w-[1400px] mx-auto flex flex-wrap justify-between items-center gap-3 text-[13px]">
           <div className="flex flex-wrap items-center gap-6">
             <a href="tel:+8801716672886" className="flex items-center gap-2 text-white/60 hover:text-[#F5A623] transition-colors">
@@ -108,7 +108,7 @@ export default function Home() {
                   alt="Business" className="w-full h-full object-cover"/>
               </div>
               <div className="absolute top-6 -left-6 bg-[#1B4FD8] px-6 py-6 shadow-xl hidden sm:flex flex-col items-center" style={{ borderRadius:"12px" }}>
-                <span className="text-5xl font-black text-white leading-none">15+</span>
+                <span className="text-5xl font-black text-white! leading-none">15+</span>
                 <span className="text-white/70 text-[11px] font-bold mt-2 uppercase tracking-widest text-center">Years of<br/>Experience</span>
               </div>
               <div className="absolute top-1/2 -translate-y-1/2 -right-5 bg-white shadow-xl px-4 py-4 hidden lg:flex items-center gap-3 border border-[#e5e7eb]" style={{ borderRadius:"12px" }}>
@@ -194,7 +194,7 @@ export default function Home() {
               <div key={i} className={`relative flex flex-col transition-all duration-300 border ${pkg.featured ? "bg-[#1B4FD8] border-[#1B4FD8] shadow-2xl" : "bg-white border-[#e5e7eb] hover:shadow-xl"}`} style={{ borderRadius:"12px" }}>
                 {pkg.featured && (
                   <div className="absolute -top-4 left-1/2 -translate-x-1/2">
-                    <span className="bg-[#F5A623] text-white text-[11px] font-bold px-5 py-1.5 uppercase tracking-widest" style={{ borderRadius:"12px" }}>Most Popular</span>
+                    <span className="bg-[#F5A623] text-white! text-[11px] font-bold px-5 py-1.5 uppercase tracking-widest" style={{ borderRadius:"12px" }}>Most Popular</span>
                   </div>
                 )}
                 <div className="p-8 flex flex-col flex-1">
@@ -258,13 +258,13 @@ export default function Home() {
                 <div className="w-14 h-14 bg-white/15 flex items-center justify-center mb-7" style={{ borderRadius:"12px" }}>
                   <Award className="w-7 h-7 text-white"/>
                 </div>
-                <h3 className="text-[1.5rem] font-extrabold text-white mb-3">Government Approved</h3>
+                <h3 className="text-[1.5rem] font-extrabold text-white! mb-3">Government Approved</h3>
                 <p className="text-white/65 leading-relaxed text-[15px]">
                   Fully licensed and recognized by relevant government bodies. Every filing is legally compliant and audit-ready.
                 </p>
               </div>
               <div className="mt-10 pt-6 border-t border-white/20">
-                <div className="text-[3.5rem] font-black text-white leading-none mb-1">15+</div>
+                <div className="text-[3.5rem] font-black text-white! leading-none mb-1">15+</div>
                 <div className="text-white/50 text-[13px] font-semibold uppercase tracking-wider">Years in operation</div>
               </div>
             </div>
@@ -349,7 +349,7 @@ export default function Home() {
                 ].map((item,i) => (
                   <div key={i} className="relative">
                     <div className="absolute -left-[29px] w-4 h-4 bg-white border-2 border-[#1B4FD8]" style={{ borderRadius:"50%" }}/>
-                    <span className="inline-block text-[11px] font-bold text-white bg-[#F5A623] px-3 py-1 mb-2" style={{ borderRadius:"12px" }}>{item.year}</span>
+                    <span className="inline-block text-[11px] font-bold text-white! bg-[#F5A623] px-3 py-1 mb-2" style={{ borderRadius:"12px" }}>{item.year}</span>
                     <h4 className="text-[15px] font-extrabold text-[#0d1b2a] mb-1">{item.title}</h4>
                     <p className="text-[#4b5563] text-[14px] leading-relaxed">{item.desc}</p>
                   </div>
@@ -360,7 +360,7 @@ export default function Home() {
               <div className="w-14 h-14 bg-white/15 flex items-center justify-center mb-7" style={{ borderRadius:"12px" }}>
                 <Award className="w-7 h-7 text-white"/>
               </div>
-              <h3 className="text-[1.8rem] font-extrabold text-white mb-4 leading-tight">Ready to take the next step?</h3>
+              <h3 className="text-[1.8rem] font-extrabold text-white! mb-4 leading-tight">Ready to take the next step?</h3>
               <p className="text-white/60 leading-relaxed mb-8 text-[15px]">
                 Let our experienced team handle the paperwork so you can focus on growing your business.
               </p>
@@ -377,8 +377,8 @@ export default function Home() {
                 ))}
               </ul>
               <div className="flex gap-4">
-                <Link href="/plan" className="flex-1 text-center py-[14px] bg-[#F5A623] text-white hover:bg-[#d4901e] transition-colors text-[12px] font-bold tracking-[0.1em] uppercase" style={{ borderRadius:"8px" }}>Get Started</Link>
-                <Link href="/contact" className="flex-1 text-center py-[14px] bg-white/10 border border-white/20 text-white hover:bg-white/20 transition-colors text-[12px] font-bold tracking-[0.1em] uppercase" style={{ borderRadius:"8px" }}>Contact Us</Link>
+                <Link href="/plan" className="flex-1 text-center py-[14px] bg-[#F5A623] text-white! hover:bg-[#d4901e] transition-colors text-[12px] font-bold tracking-[0.1em] uppercase" style={{ borderRadius:"8px" }}>Get Started</Link>
+                <Link href="/contact" className="flex-1 text-center py-[14px] bg-white/10 border border-white/20 text-white! hover:bg-white/20 transition-colors text-[12px] font-bold tracking-[0.1em] uppercase" style={{ borderRadius:"8px" }}>Contact Us</Link>
               </div>
             </div>
           </div>
@@ -435,7 +435,7 @@ export default function Home() {
                   <img src={m.img} alt={m.name} className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700"/>
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent"/>
                   <div className="absolute top-5 left-5">
-                    <span className="bg-[#F5A623] text-white text-[11px] font-bold px-4 py-1.5 uppercase tracking-widest" style={{ borderRadius:"12px" }}>{m.sub}</span>
+                    <span className="bg-[#F5A623] text-white! text-[11px] font-bold px-4 py-1.5 uppercase tracking-widest" style={{ borderRadius:"12px" }}>{m.sub}</span>
                   </div>
                   <div className="absolute top-5 right-5 flex flex-col gap-2 opacity-0 group-hover:opacity-100 translate-x-4 group-hover:translate-x-0 transition-all duration-300">
                     {[["M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"]].map((d,j)=>(
@@ -445,7 +445,7 @@ export default function Home() {
                     ))}
                   </div>
                   <div className="absolute bottom-0 left-0 right-0 p-7">
-                    <h3 className="text-[1.3rem] font-extrabold text-white mb-1">{m.name}</h3>
+                    <h3 className="text-[1.3rem] font-extrabold text-white! mb-1">{m.name}</h3>
                     <p className="text-white/55 text-[13px]">{m.role}</p>
                   </div>
                 </div>
@@ -494,7 +494,7 @@ export default function Home() {
                 <div className="relative h-56 overflow-hidden">
                   <img src={p.img} alt={p.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"/>
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent"/>
-                  <span className="absolute top-5 left-5 text-white text-[11px] font-bold px-4 py-1.5 uppercase tracking-widest" style={{ background:p.catColor, borderRadius:"12px" }}>{p.cat}</span>
+                  <span className="absolute top-5 left-5 text-white! text-[11px] font-bold px-4 py-1.5 uppercase tracking-widest" style={{ background:p.catColor, borderRadius:"12px" }}>{p.cat}</span>
                   <p className="absolute bottom-4 left-5 text-white/70 text-[12px] font-semibold">{p.date} · {p.read} read</p>
                 </div>
                 <div className="flex flex-col flex-1 p-7">
@@ -502,7 +502,7 @@ export default function Home() {
                   <p className="text-[#4b5563] text-[14px] leading-relaxed flex-1 mb-6">{p.desc}</p>
                   <div className="flex items-center justify-between pt-5 border-t border-[#e5e7eb]">
                     <div className="flex items-center gap-2">
-                      <div className="w-7 h-7 bg-[#1B4FD8] flex items-center justify-center text-white text-[12px] font-black" style={{ borderRadius:"50%" }}>{p.ai}</div>
+                      <div className="w-7 h-7 bg-[#1B4FD8] flex items-center justify-center text-white! text-[12px] font-black" style={{ borderRadius:"50%" }}>{p.ai}</div>
                       <span className="text-[13px] font-semibold text-[#4b5563]">{p.author}</span>
                     </div>
                     <Link href="/blog" className="inline-flex items-center gap-1 text-[13px] font-bold text-[#1B4FD8] hover:text-[#F5A623] transition-colors group/l">
@@ -540,7 +540,7 @@ export default function Home() {
               </div>
               <Link
                 href="/contact"
-                className="group inline-flex items-center gap-2 text-white bg-[#1B4FD8] hover:bg-[#1340B8] transition-colors px-7 py-[13px] text-[12px] font-bold tracking-widest uppercase"
+                className="group inline-flex items-center gap-2 text-white! bg-[#1B4FD8] hover:bg-[#1340B8] transition-colors px-7 py-[13px] text-[12px] font-bold tracking-widest uppercase"
                 style={{ borderRadius: "8px" }}
               >
                 Get Free Consultation
@@ -666,7 +666,7 @@ export default function Home() {
                   <input
                     type="email"
                     placeholder="Your email address"
-                    className="flex-1 px-4 py-3 bg-white/5 border border-white/10 text-white placeholder-white/25 focus:outline-none focus:border-[#1B4FD8] text-[13px] min-w-0"
+                    className="flex-1 px-4 py-3 bg-white/5 border border-white/10 text-white! placeholder-white/25 focus:outline-none focus:border-[#1B4FD8] text-[13px] min-w-0"
                     style={{ borderRadius: "8px" }}
                   />
                   <button

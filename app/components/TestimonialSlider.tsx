@@ -120,7 +120,7 @@ export default function TestimonialSlider() {
                 style={{ borderColor: isCenter ? "rgba(255,255,255,0.2)" : "#e5e7eb" }}
               >
                 <div
-                  className="w-11 h-11 flex items-center justify-center text-white font-extrabold text-[16px] shrink-0"
+                  className="w-11 h-11 flex items-center justify-center text-white! font-extrabold text-[16px] shrink-0"
                   style={{
                     background: isCenter ? "rgba(255,255,255,0.2)" : "#1B4FD8",
                     borderRadius: "50%",
@@ -188,7 +188,7 @@ export default function TestimonialSlider() {
           </button>
           <button
             onClick={() => go(current + 1)}
-            className="w-11 h-11 flex items-center justify-center bg-[#1B4FD8] hover:bg-[#1340B8] text-white transition-colors"
+            className="w-11 h-11 flex items-center justify-center bg-[#1B4FD8] hover:bg-[#1340B8] text-white! transition-colors"
             style={{ borderRadius: "8px" }}
             aria-label="Next"
           >

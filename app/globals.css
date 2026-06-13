@@ -42,7 +42,7 @@ body {
 
 /* ── Headings — font/weight/spacing only, NO color ──────────── *
  * Color is set per-context in JSX (text-[#0d1b2a] on light,    *
- * text-white on dark/blue backgrounds).                         *
+ * text-white! on dark/blue backgrounds).                         *
  * ─────────────────────────────────────────────────────────────*/
 h1, h2, h3, h4, h5, h6 {
   font-family:    var(--font-main);

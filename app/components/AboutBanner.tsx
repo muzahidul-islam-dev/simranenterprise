@@ -27,7 +27,7 @@ export default function AboutBanner() {
       {/* Dark overlay for depth */}
       <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
       {/* Badge */}
-      <div className="absolute bottom-6 left-6 bg-[#1B4FD8] text-white px-5 py-2.5 rounded-lg text-sm font-semibold">
+      <div className="absolute bottom-6 left-6 bg-[#1B4FD8] text-white! px-5 py-2.5 rounded-lg text-sm font-semibold">
         Since 2009
       </div>
     </div>
