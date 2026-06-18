@@ -45,7 +45,7 @@ export default function ExperienceSection() {
                 { year: "2024", title: "5000+ Clients Served",  desc: "Now one of the most trusted consultancy firms across Bangladesh." },
               ].map((item, i) => (
                 <div key={i} className="relative">
-                  <div className="absolute -left-[29px] w-4 h-4 bg-white border-2 border-[#1B4FD8]" style={{ borderRadius: "50%" }} />
+                  <div className="absolute left-[-29px] w-4 h-4 bg-white border-2 border-[#1B4FD8]" style={{ borderRadius: "50%" }} />
                   <span className="inline-block text-[11px] font-bold text-white bg-[#F5A623] px-3 py-1 mb-2" style={{ borderRadius: "12px" }}>{item.year}</span>
                   <h4 className="text-[15px] font-extrabold text-[#0d1b2a] mb-1">{item.title}</h4>
                   <p className="text-[#4b5563] text-[14px] leading-relaxed">{item.desc}</p>
