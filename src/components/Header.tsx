@@ -66,11 +66,18 @@ export default function Header() {
           {/* CTA */}
           <div className="hidden lg:flex items-center gap-5">
             <Link
-              href="/user/login"
+              href="/signin"
               className="transition-colors"
               style={{ fontSize: "14px", fontWeight: 600, color: scrolled ? "#4b5563" : "rgba(255,255,255,0.6)" }}
             >
-              Login
+              Sign In
+            </Link>
+            <Link
+              href="/signup"
+              className="transition-colors"
+              style={{ fontSize: "14px", fontWeight: 600, color: scrolled ? "#1B4FD8" : "rgba(255,255,255,0.9)" }}
+            >
+              Register
             </Link>
             <Link
               href="/contact"
@@ -112,7 +119,25 @@ export default function Header() {
                 {item}
               </Link>
             ))}
-            <div className="px-6 pt-4 pb-2 border-t border-[#e5e7eb] mt-2">
+            <div className="px-6 pt-4 pb-2 border-t border-[#e5e7eb] mt-2 flex flex-col gap-3">
+              <div className="flex gap-3">
+                <Link
+                  href="/signin"
+                  onClick={() => setMenuOpen(false)}
+                  className="flex-1 flex items-center justify-center py-3 border border-[#e5e7eb] hover:border-[#1B4FD8] hover:text-[#1B4FD8] transition-colors"
+                  style={{ fontSize: "13px", fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", borderRadius: "8px", color: "#4b5563" }}
+                >
+                  Sign In
+                </Link>
+                <Link
+                  href="/signup"
+                  onClick={() => setMenuOpen(false)}
+                  className="flex-1 flex items-center justify-center py-3 border border-[#1B4FD8] text-[#1B4FD8] hover:bg-[#1B4FD8] hover:text-white transition-colors"
+                  style={{ fontSize: "13px", fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", borderRadius: "8px" }}
+                >
+                  Register
+                </Link>
+              </div>
               <Link
                 href="/contact"
                 onClick={() => setMenuOpen(false)}
