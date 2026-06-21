@@ -1,13 +1,10 @@
 "use client";
 
 import { useState } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { Eye, EyeOff, Loader2 } from "lucide-react";
-import { useHttp } from "@/hooks/useHttp";
-import { useAppDispatch } from "@/store/hooks";
-import { setCredentials, setError } from "@/store/slices/customerAuthSlice";
-import type { AuthUser, LoginPayload } from "@/types/auth";
+import { signIn } from "next-auth/react";
 
 interface FormData {
   email: string;
@@ -21,12 +18,14 @@ interface FormErrors {
 
 export default function SigninView() {
   const router = useRouter();
-  const dispatch = useAppDispatch();
-  const { post, isLoading, error } = useHttp();
+  const searchParams = useSearchParams();
+  const callbackUrl = searchParams.get("callbackUrl") ?? "/dashboard";
 
   const [form, setForm] = useState<FormData>({ email: "", password: "" });
   const [errors, setErrors] = useState<FormErrors>({});
   const [showPassword, setShowPassword] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [serverError, setServerError] = useState<string | null>(null);
 
   function validate(): boolean {
     const next: FormErrors = {};
@@ -41,30 +40,31 @@ export default function SigninView() {
     const { name, value } = e.target;
     setForm((prev) => ({ ...prev, [name]: value }));
     setErrors((prev) => ({ ...prev, [name]: undefined }));
+    setServerError(null);
   }
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     if (!validate()) return;
 
-    try {
-      const response = await post<{ token: string; user: AuthUser; message?: string }>(
-        "/api/customer/auth/login",
-        form as LoginPayload
-      );
+    setIsLoading(true);
+    setServerError(null);
 
-      if (response.message) {
-        router.push(`/verify-email?email=${encodeURIComponent(form.email)}`);
-        return;
-      }
+    const result = await signIn("credentials", {
+      email: form.email,
+      password: form.password,
+      redirect: false,
+    });
 
-      dispatch(setCredentials({ token: response.token, user: response.user }));
-      router.push("/");
-    } catch (err) {
-      if (err instanceof Error) {
-        dispatch(setError(err.message));
-      }
+    setIsLoading(false);
+
+    if (result?.error) {
+      setServerError("Invalid email or password. Please try again.");
+      return;
     }
+
+    router.push(callbackUrl);
+    router.refresh();
   }
 
   return (
@@ -75,9 +75,9 @@ export default function SigninView() {
           <p className="text-gray-500 text-sm">Sign in to your account</p>
         </div>
 
-        {error && (
+        {serverError && (
           <div className="mb-6 px-4 py-3 rounded-lg bg-red-50 border border-red-200 text-red-600 text-sm">
-            {error}
+            {serverError}
           </div>
         )}
 
@@ -128,7 +128,7 @@ export default function SigninView() {
           <button
             type="submit"
             disabled={isLoading}
-            className="w-full py-3.5 rounded-xl bg-[#1B4FD8] hover:bg-[#1640b0] disabled:opacity-60 disabled:cursor-not-allowed text-white font-semibold text-sm transition flex items-center justify-center gap-2"
+            className="w-full py-3.5 rounded-xl bg-[#1B4FD8] hover:bg-[#1640b0] disabled:opacity-60 disabled:cursor-not-allowed cursor-pointer text-white font-semibold text-sm transition flex items-center justify-center gap-2"
           >
             {isLoading && <Loader2 className="w-4 h-4 animate-spin" />}
             {isLoading ? "Signing in..." : "Sign In"}

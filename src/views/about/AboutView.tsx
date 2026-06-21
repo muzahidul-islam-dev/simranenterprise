@@ -1,5 +1,6 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import TopBar from "@/components/TopBar";
 import PageHeroSection from "./sections/PageHeroSection";
 import WhoWeAreSection from "./sections/WhoWeAreSection";
 import MissionVisionSection from "./sections/MissionVisionSection";
@@ -12,6 +13,7 @@ const F = { fontFamily: "var(--font-main)" };
 export default function AboutView() {
   return (
     <div className="min-h-screen bg-white" style={F}>
+      <TopBar />
       <PageHeroSection />
       <Header />
       <WhoWeAreSection />

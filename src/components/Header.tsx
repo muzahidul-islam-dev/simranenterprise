@@ -3,26 +3,34 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
+import { useSession } from "next-auth/react";
+import ProfileDropdown from "@/components/ProfileDropdown";
 
 const F = { fontFamily: "var(--font-main)" };
 
-export default function Header() {
-  const [scrolled, setScrolled] = useState(false);
+interface HeaderProps {
+  forceScrolled?: boolean;
+}
+
+export default function Header({ forceScrolled = false }: HeaderProps) {
+  const [scrolled, setScrolled] = useState(forceScrolled);
   const [menuOpen, setMenuOpen] = useState(false);
+  const { data: session } = useSession();
 
   useEffect(() => {
+    if (forceScrolled) return;
     const handler = () => setScrolled(window.scrollY > 60);
     window.addEventListener("scroll", handler, { passive: true });
     handler();
     return () => window.removeEventListener("scroll", handler);
-  }, []);
+  }, [forceScrolled]);
 
   return (
     <header
       className="fixed left-0 right-0 z-50 transition-all duration-300"
       style={{
         ...F,
-        top: scrolled ? 0 : "48px",
+        top: forceScrolled ? "48px" : scrolled ? 0 : "48px",
         background: scrolled ? "#ffffff" : "transparent",
         boxShadow: scrolled ? "0 2px 20px rgba(0,0,0,0.08)" : "none",
         borderBottom: scrolled ? "1px solid #e5e7eb" : "none",
@@ -65,28 +73,49 @@ export default function Header() {
 
           {/* CTA */}
           <div className="hidden lg:flex items-center gap-5">
-            <Link
-              href="/signin"
-              className="transition-colors"
-              style={{ fontSize: "14px", fontWeight: 600, color: scrolled ? "#4b5563" : "rgba(255,255,255,0.6)" }}
-            >
-              Sign In
-            </Link>
-            <Link
-              href="/signup"
-              className="transition-colors"
-              style={{ fontSize: "14px", fontWeight: 600, color: scrolled ? "#1B4FD8" : "rgba(255,255,255,0.9)" }}
-            >
-              Register
-            </Link>
-            <Link
-              href="/contact"
-              className="group inline-flex items-center gap-2 text-white! bg-[#F5A623] hover:bg-[#d4901e] transition-colors px-7 py-3"
-              style={{ fontSize: "12px", fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", borderRadius: "8px" }}
-            >
-              Get A Quote
-              <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
-            </Link>
+            {session ? (
+              <>
+                <ProfileDropdown
+                  firstName={session.user.first_name}
+                  lastName={session.user.last_name}
+                  avatar={session.user.avatar}
+                  scrolled={scrolled}
+                />
+                <Link
+                  href="/contact"
+                  className="group inline-flex items-center gap-2 text-white! bg-[#F5A623] hover:bg-[#d4901e] transition-colors px-7 py-3"
+                  style={{ fontSize: "12px", fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", borderRadius: "8px" }}
+                >
+                  Get A Quote
+                  <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
+                </Link>
+              </>
+            ) : (
+              <>
+                <Link
+                  href="/signin"
+                  className="transition-colors"
+                  style={{ fontSize: "14px", fontWeight: 600, color: scrolled ? "#4b5563" : "rgba(255,255,255,0.6)" }}
+                >
+                  Sign In
+                </Link>
+                <Link
+                  href="/signup"
+                  className="transition-colors"
+                  style={{ fontSize: "14px", fontWeight: 600, color: scrolled ? "#1B4FD8" : "rgba(255,255,255,0.9)" }}
+                >
+                  Register
+                </Link>
+                <Link
+                  href="/contact"
+                  className="group inline-flex items-center gap-2 text-white! bg-[#F5A623] hover:bg-[#d4901e] transition-colors px-7 py-3"
+                  style={{ fontSize: "12px", fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", borderRadius: "8px" }}
+                >
+                  Get A Quote
+                  <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
+                </Link>
+              </>
+            )}
           </div>
 
           {/* Mobile menu button */}
@@ -120,24 +149,37 @@ export default function Header() {
               </Link>
             ))}
             <div className="px-6 pt-4 pb-2 border-t border-[#e5e7eb] mt-2 flex flex-col gap-3">
-              <div className="flex gap-3">
-                <Link
-                  href="/signin"
-                  onClick={() => setMenuOpen(false)}
-                  className="flex-1 flex items-center justify-center py-3 border border-[#e5e7eb] hover:border-[#1B4FD8] hover:text-[#1B4FD8] transition-colors"
-                  style={{ fontSize: "13px", fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", borderRadius: "8px", color: "#4b5563" }}
-                >
-                  Sign In
-                </Link>
-                <Link
-                  href="/signup"
-                  onClick={() => setMenuOpen(false)}
-                  className="flex-1 flex items-center justify-center py-3 border border-[#1B4FD8] text-[#1B4FD8] hover:bg-[#1B4FD8] hover:text-white transition-colors"
-                  style={{ fontSize: "13px", fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", borderRadius: "8px" }}
-                >
-                  Register
-                </Link>
-              </div>
+              {session ? (
+                <>
+                  <Link
+                    href="/dashboard"
+                    onClick={() => setMenuOpen(false)}
+                    className="flex items-center justify-center py-3 border border-[#1B4FD8] text-[#1B4FD8] hover:bg-[#1B4FD8] hover:text-white transition-colors"
+                    style={{ fontSize: "13px", fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", borderRadius: "8px" }}
+                  >
+                    My Dashboard
+                  </Link>
+                </>
+              ) : (
+                <div className="flex gap-3">
+                  <Link
+                    href="/signin"
+                    onClick={() => setMenuOpen(false)}
+                    className="flex-1 flex items-center justify-center py-3 border border-[#e5e7eb] hover:border-[#1B4FD8] hover:text-[#1B4FD8] transition-colors"
+                    style={{ fontSize: "13px", fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", borderRadius: "8px", color: "#4b5563" }}
+                  >
+                    Sign In
+                  </Link>
+                  <Link
+                    href="/signup"
+                    onClick={() => setMenuOpen(false)}
+                    className="flex-1 flex items-center justify-center py-3 border border-[#1B4FD8] text-[#1B4FD8] hover:bg-[#1B4FD8] hover:text-white transition-colors"
+                    style={{ fontSize: "13px", fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", borderRadius: "8px" }}
+                  >
+                    Register
+                  </Link>
+                </div>
+              )}
               <Link
                 href="/contact"
                 onClick={() => setMenuOpen(false)}

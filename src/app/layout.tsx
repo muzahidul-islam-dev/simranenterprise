@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Plus_Jakarta_Sans } from "next/font/google";
 import ReduxProvider from "@/components/providers/ReduxProvider";
+import SessionProvider from "@/components/providers/SessionProvider";
 import "./globals.css";
 
 const plusJakarta = Plus_Jakarta_Sans({
@@ -18,7 +19,9 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html lang="en" className={`${plusJakarta.variable} h-full`}>
       <body className="min-h-full flex flex-col antialiased">
-        <ReduxProvider>{children}</ReduxProvider>
+        <SessionProvider>
+          <ReduxProvider>{children}</ReduxProvider>
+        </SessionProvider>
       </body>
     </html>
   );

@@ -5,28 +5,10 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { Eye, EyeOff, Loader2 } from "lucide-react";
 import { useHttp } from "@/hooks/useHttp";
+import { COUNTRY_NAMES } from "@/lib/countries";
 import type { RegisterPayload } from "@/types/auth";
 
-const COUNTRIES = [
-  "Afghanistan","Albania","Algeria","Andorra","Angola","Argentina","Armenia","Australia",
-  "Austria","Azerbaijan","Bahrain","Bangladesh","Belarus","Belgium","Belize","Benin",
-  "Bhutan","Bolivia","Bosnia and Herzegovina","Botswana","Brazil","Brunei","Bulgaria",
-  "Burkina Faso","Burundi","Cambodia","Cameroon","Canada","Chile","China","Colombia",
-  "Congo","Croatia","Cuba","Cyprus","Czech Republic","Denmark","Ecuador","Egypt",
-  "Ethiopia","Finland","France","Georgia","Germany","Ghana","Greece","Guatemala",
-  "Honduras","Hungary","India","Indonesia","Iran","Iraq","Ireland","Israel","Italy",
-  "Jamaica","Japan","Jordan","Kazakhstan","Kenya","Kuwait","Kyrgyzstan","Laos","Latvia",
-  "Lebanon","Libya","Lithuania","Luxembourg","Madagascar","Malaysia","Maldives","Mali",
-  "Malta","Mexico","Moldova","Mongolia","Morocco","Mozambique","Myanmar","Namibia",
-  "Nepal","Netherlands","New Zealand","Nicaragua","Niger","Nigeria","North Korea",
-  "Norway","Oman","Pakistan","Palestine","Panama","Paraguay","Peru","Philippines",
-  "Poland","Portugal","Qatar","Romania","Russia","Rwanda","Saudi Arabia","Senegal",
-  "Serbia","Singapore","Slovakia","Slovenia","Somalia","South Africa","South Korea",
-  "Spain","Sri Lanka","Sudan","Sweden","Switzerland","Syria","Taiwan","Tajikistan",
-  "Tanzania","Thailand","Tunisia","Turkey","Turkmenistan","Uganda","Ukraine",
-  "United Arab Emirates","United Kingdom","United States","Uruguay","Uzbekistan",
-  "Venezuela","Vietnam","Yemen","Zambia","Zimbabwe",
-];
+const COUNTRIES = COUNTRY_NAMES;
 
 interface FormData {
   first_name: string;
@@ -92,24 +74,23 @@ export default function SignupView() {
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     if (!validate()) return;
-
     try {
       await post<{ message: string }>("/api/customer/auth/register", form as RegisterPayload);
-      router.push(`/verify-email?email=${encodeURIComponent(form.email)}`);
+      router.push(`/verify-email?email=${encodeURIComponent(form.email)}&password=${encodeURIComponent(form.password)}`);
     } catch {
     }
   }
 
   return (
     <div className="w-full max-w-2xl">
-      <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8 shadow-2xl">
+      <div className="bg-white border border-gray-200 rounded-2xl p-8 shadow-sm">
         <div className="mb-8 text-center">
-          <h1 className="text-3xl font-bold text-white mb-2">Create Account</h1>
-          <p className="text-slate-400 text-sm">Join Simran Enterprise today</p>
+          <h1 className="text-2xl font-bold text-gray-900 mb-1">Create Account</h1>
+          <p className="text-gray-500 text-sm">Join Simran Enterprise today</p>
         </div>
 
         {error && (
-          <div className="mb-6 px-4 py-3 rounded-lg bg-red-500/10 border border-red-500/30 text-red-400 text-sm">
+          <div className="mb-6 px-4 py-3 rounded-lg bg-red-50 border border-red-200 text-red-600 text-sm">
             {error}
           </div>
         )}
@@ -156,29 +137,23 @@ export default function SignupView() {
             />
 
             <div className="flex flex-col gap-1.5">
-              <label className="text-sm font-medium text-slate-300">Country</label>
+              <label className="text-sm font-medium text-gray-700">Country</label>
               <select
                 name="country"
                 value={form.country}
                 onChange={handleChange}
-                className={`w-full px-4 py-3 rounded-xl bg-white/5 border text-white text-sm outline-none transition focus:ring-2 focus:ring-amber-500/50 ${
+                className={`w-full px-4 py-3 rounded-xl border text-gray-900 text-sm outline-none transition focus:ring-2 focus:ring-[#1B4FD8]/20 bg-white ${
                   errors.country
-                    ? "border-red-500/60 focus:border-red-500"
-                    : "border-white/10 focus:border-amber-500/60"
+                    ? "border-red-400 focus:border-red-400"
+                    : "border-gray-200 focus:border-[#1B4FD8]"
                 }`}
               >
-                <option value="" className="bg-slate-800">
-                  Select country
-                </option>
+                <option value="">Select country</option>
                 {COUNTRIES.map((c) => (
-                  <option key={c} value={c} className="bg-slate-800">
-                    {c}
-                  </option>
+                  <option key={c} value={c}>{c}</option>
                 ))}
               </select>
-              {errors.country && (
-                <p className="text-xs text-red-400">{errors.country}</p>
-              )}
+              {errors.country && <p className="text-xs text-red-500">{errors.country}</p>}
             </div>
           </div>
 
@@ -207,16 +182,16 @@ export default function SignupView() {
           <button
             type="submit"
             disabled={isLoading}
-            className="w-full py-3.5 rounded-xl bg-amber-500 hover:bg-amber-400 disabled:opacity-60 disabled:cursor-not-allowed text-slate-900 font-semibold text-sm transition flex items-center justify-center gap-2"
+            className="w-full py-3.5 rounded-xl bg-[#1B4FD8] hover:bg-[#1640b0] disabled:opacity-60 disabled:cursor-not-allowed cursor-pointer text-white font-semibold text-sm transition flex items-center justify-center gap-2"
           >
             {isLoading && <Loader2 className="w-4 h-4 animate-spin" />}
             {isLoading ? "Creating account..." : "Create Account"}
           </button>
         </form>
 
-        <p className="mt-6 text-center text-sm text-slate-400">
+        <p className="mt-6 text-center text-sm text-gray-500">
           Already have an account?{" "}
-          <Link href="/signin" className="text-amber-400 hover:text-amber-300 font-medium transition">
+          <Link href="/signin" className="text-[#1B4FD8] hover:text-[#1640b0] font-medium transition">
             Sign in
           </Link>
         </p>
@@ -238,20 +213,20 @@ interface FieldProps {
 function Field({ label, name, type = "text", placeholder, value, error, onChange }: FieldProps) {
   return (
     <div className="flex flex-col gap-1.5">
-      <label className="text-sm font-medium text-slate-300">{label}</label>
+      <label className="text-sm font-medium text-gray-700">{label}</label>
       <input
         type={type}
         name={name}
         placeholder={placeholder}
         value={value}
         onChange={onChange}
-        className={`w-full px-4 py-3 rounded-xl bg-white/5 border text-white text-sm placeholder-slate-500 outline-none transition focus:ring-2 focus:ring-amber-500/50 ${
+        className={`w-full px-4 py-3 rounded-xl border text-gray-900 text-sm placeholder-gray-400 outline-none transition focus:ring-2 focus:ring-[#1B4FD8]/20 ${
           error
-            ? "border-red-500/60 focus:border-red-500"
-            : "border-white/10 focus:border-amber-500/60"
+            ? "border-red-400 focus:border-red-400"
+            : "border-gray-200 focus:border-[#1B4FD8]"
         }`}
       />
-      {error && <p className="text-xs text-red-400">{error}</p>}
+      {error && <p className="text-xs text-red-500">{error}</p>}
     </div>
   );
 }
@@ -264,7 +239,7 @@ interface PasswordFieldProps extends Omit<FieldProps, "type"> {
 function PasswordField({ label, name, placeholder, value, error, show, onToggle, onChange }: PasswordFieldProps) {
   return (
     <div className="flex flex-col gap-1.5">
-      <label className="text-sm font-medium text-slate-300">{label}</label>
+      <label className="text-sm font-medium text-gray-700">{label}</label>
       <div className="relative">
         <input
           type={show ? "text" : "password"}
@@ -272,21 +247,21 @@ function PasswordField({ label, name, placeholder, value, error, show, onToggle,
           placeholder={placeholder}
           value={value}
           onChange={onChange}
-          className={`w-full px-4 py-3 pr-12 rounded-xl bg-white/5 border text-white text-sm placeholder-slate-500 outline-none transition focus:ring-2 focus:ring-amber-500/50 ${
+          className={`w-full px-4 py-3 pr-12 rounded-xl border text-gray-900 text-sm placeholder-gray-400 outline-none transition focus:ring-2 focus:ring-[#1B4FD8]/20 ${
             error
-              ? "border-red-500/60 focus:border-red-500"
-              : "border-white/10 focus:border-amber-500/60"
+              ? "border-red-400 focus:border-red-400"
+              : "border-gray-200 focus:border-[#1B4FD8]"
           }`}
         />
         <button
           type="button"
           onClick={onToggle}
-          className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-white transition"
+          className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 transition"
         >
           {show ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
         </button>
       </div>
-      {error && <p className="text-xs text-red-400">{error}</p>}
+      {error && <p className="text-xs text-red-500">{error}</p>}
     </div>
   );
 }

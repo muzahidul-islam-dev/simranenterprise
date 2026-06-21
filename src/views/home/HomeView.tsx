@@ -1,5 +1,6 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import TopBar from "@/components/TopBar";
 import HeroSection from "./sections/HeroSection";
 import AboutSection from "./sections/AboutSection";
 import ServicesSection from "./sections/ServicesSection";
@@ -15,6 +16,7 @@ const F = { fontFamily: "var(--font-main)" };
 export default function HomeView() {
   return (
     <div className="min-h-screen bg-white" style={F}>
+      <TopBar />
       <HeroSection />
       <Header />
       <AboutSection />
